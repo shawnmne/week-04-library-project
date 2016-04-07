@@ -1,0 +1,13 @@
+<h1>Edit: <%= @book.title %></h1>
+<% if @book %>
+
+ <form action="/books/<%= @book.id %>" method="post">
+ Title:<input type="text" name="title" value="<%= @book.title %>" ></br>
+ Author:<input type="text", name="author", value="<%= @book.author %>"></br>
+ ISBN:<input type="text", name="isbn", value="<%= @book.isbn %>"></br>
+  <input type="submit" value="Edit Book">
+</form>
+
+<% else %>
+  <p>No book by that title exists</p>
+<% end %>

@@ -37,29 +37,77 @@ end
 
 # Show
 get '/libraries/:id' do
-  @library = Library.find_by_id(params['id']) # nil or Insect object
+  @library = Library.find_by_id(params['id']) 
   erb :libraries_show
 end
 
 
-# Edit
- 
+# Edit 
  get '/libraries/:id/edit' do
    @library = Library.find_by_id(params['id'])
- #  @researchers = Researcher.all
    erb :libraries_edit
  end
  
  post '/libraries/:id' do
    @library = Library.find_by_id(params['id'])
-#   @researcher = Researcher.find_by_id(params['researcher_id'])
  binding.pry
    if @library.update_attributes(branch_name: params['branch_name'], 
                                 phone_number: params['phone_number'],
                                 address: params['address'])
-                                #researcher: @researcher)
      redirect to("/libraries/#{@library.id}")
    else
      erb :libraries_edit
    end
  	end
+
+### books
+get '/books' do 
+  @books = Book.all
+  erb :books_index
+end	
+
+# New
+get '/books/new' do
+  @book = Book.new
+  erb :books_new
+end
+
+# Create
+post '/books' do
+  @book = Book.new(params)
+
+  if @book.save
+    redirect to('/books')
+  else
+    erb :books_new
+  end
+end
+
+# Show
+get '/books/:id' do
+  @book = Book.find_by_id(params['id']) 
+  erb :books_show
+end
+
+
+# Edit
+ 
+ get '/books/:id/edit' do
+   @book = Book.find_by_id(params['id'])
+   erb :books_edit
+ end
+ 
+ post '/books/:id' do
+   @book = Book.find_by_id(params['id'])
+   if @book.update_attributes(title: params['title'], 
+                                author: params['author'],
+                                isbn: params['isbn'])
+     redirect to("/books/#{@book.id}")
+   else
+     erb :books_edit
+   end
+ 	end 	
+
+
+
+
