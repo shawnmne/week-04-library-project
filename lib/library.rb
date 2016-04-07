@@ -2,10 +2,10 @@ class Library < ActiveRecord::Base
 
 	validates :branch_name, presence: true
 	validates :address, presence: true
-	validates :phone, presence: true
+	validates :phone_number, presence: true
 	validates :branch_name, uniqueness: true
 	validates :address, uniqueness: true
-	validates :phone, uniqueness: true
+	validates :phone_number, uniqueness: true
 	validates_associated :staff_members
 	validates_associated :books
 
