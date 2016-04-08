@@ -7,9 +7,9 @@ require_relative "lib/book.rb"
 require_relative "lib/library.rb"
 require_relative "lib/patron.rb"
 require_relative "lib/staff_member.rb"
-
+### front page
 get '/' do
-	binding.pry
+	erb :front_page
 end
 
 ### libraries
@@ -50,7 +50,6 @@ end
  
  post '/libraries/:id' do
    @library = Library.find_by_id(params['id'])
- binding.pry
    if @library.update_attributes(branch_name: params['branch_name'], 
                                 phone_number: params['phone_number'],
                                 address: params['address'])
@@ -164,7 +163,7 @@ end
 
 # New
 get '/staff_members/new' do
-  @staff_members = StaffMember.new
+  @staff_member = StaffMember.new
   erb :staff_members_new
 end
 
@@ -202,3 +201,5 @@ end
      erb :staff_members_edit
    end
  	end 	
+
+
