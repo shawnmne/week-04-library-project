@@ -93,14 +93,17 @@ end
  
  get '/books/:id/edit' do
    @book = Book.find_by_id(params['id'])
+   @libraries = Library.all
    erb :books_edit
  end
  
  post '/books/:id' do
    @book = Book.find_by_id(params['id'])
+   @library = Library.find_by_id(params['library_id'])
    if @book.update_attributes(title: params['title'], 
                                 author: params['author'],
-                                isbn: params['isbn'])
+                                isbn: params['isbn'],
+                                library: @library)
      redirect to("/books/#{@book.id}")
    else
      erb :books_edit

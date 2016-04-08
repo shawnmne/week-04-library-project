@@ -11,4 +11,9 @@ class Library < ActiveRecord::Base
 
 	has_many :books
 	has_many :staff_members
+
+	def to_s
+		branch_name
+	end
+
 end

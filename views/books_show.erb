@@ -2,6 +2,7 @@
   <h1><%= @book.title %></h1>
  	<p><em>Author:</em> <%= @book.author %></p>
   <p><em>ISBN:</em> <%= @book.isbn %></p>
+  <p><em>Library:</em> <%= @book.library ? @book.library : "No Library" %></p>
 
 <% else %>
   <p>No book of that title exists</p>
