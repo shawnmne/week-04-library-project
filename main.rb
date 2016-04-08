@@ -156,3 +156,49 @@ end
    end
  	end 	
 
+### staff_members
+get '/staff_members' do 
+  @staff_members = StaffMember.all
+  erb :staff_members_index
+end	
+
+# New
+get '/staff_members/new' do
+  @staff_members = StaffMember.new
+  erb :staff_members_new
+end
+
+# Create
+post '/staff_members' do
+  @staff_member = StaffMember.new(params)
+
+  if @staff_member.save
+    redirect to('/staff_members')
+  else
+    erb :staff_members_new
+  end
+end
+
+# Show
+get '/staff_members/:id' do
+  @staff_member = StaffMember.find_by_id(params['id']) 
+  erb :staff_members_show
+end
+
+
+# Edit
+ 
+ get '/staff_members/:id/edit' do
+   @staff_member = StaffMember.find_by_id(params['id'])
+   erb :staff_members_edit
+ end
+ 
+ post '/staff_members/:id' do
+   @staff_member = StaffMember.find_by_id(params['id'])
+   if @staff_member.update_attributes(name: params['name'],
+                                email: params['email'])
+     redirect to("/staff_members/#{@staff_member.id}")
+   else
+     erb :staff_members_edit
+   end
+ 	end 	

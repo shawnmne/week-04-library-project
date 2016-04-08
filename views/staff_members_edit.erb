@@ -1,0 +1,12 @@
+<h1>Edit: <%= @staff_member.name %></h1>
+<% if @staff_member %>
+
+ <form action="/staff_members/<%= @staff_member.id %>" method="post">
+ Name:<input type="text" name="name" value="<%= @staff_member.name %>" ></br>
+ email:<input type="text", name="email", value="<%= @staff_member.email %>"></br>
+  <input type="submit" value="Edit Staff Member">
+</form>
+
+<% else %>
+  <p>No Staff Member by that name exists</p>
+<% end %>
