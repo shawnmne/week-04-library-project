@@ -1,0 +1,12 @@
+<h1>Edit: <%= @patron.name %></h1>
+<% if @patron %>
+
+ <form action="/patrons/<%= @patron.id %>" method="post">
+ Name:<input type="text" name="name" value="<%= @patron.name %>" ></br>
+ email:<input type="text", name="email", value="<%= @patron.email %>"></br>
+  <input type="submit" value="Edit Patron">
+</form>
+
+<% else %>
+  <p>No Patron by that name exists</p>
+<% end %>
