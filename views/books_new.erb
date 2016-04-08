@@ -13,8 +13,8 @@
    <select name="library_id">
      <option>No Library</option>
      <% @libraries.each do |library| %>
-       <option value="<%= libary.id %>">
-         <%= library.name %>
+       <option value="<%= library.id %>">
+         <%= library.branch_name %>
        </option>
      <% end %>
    </select>

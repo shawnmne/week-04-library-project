@@ -79,6 +79,7 @@ end
 # New
 get '/books/new' do
   @book = Book.new
+  @libraries = Library.all
   erb :books_new
 end
 
@@ -110,13 +111,13 @@ end
   @book = Book.find_by_id(params['id'])
   @patron = Patron.find_by_id(params['patron_id'])
   if @book.update_attributes(patron: @patron)                        
-    redirect to("/books/#{@book.id}")s
+    redirect to("/books/#{@book.id}")
   else
     erb :books_edit
   end
 end
 
-#check in boooks
+#check in books
 	get '/books/:id/checkin' do 
  		@book = Book.find_by_id(params['id']) 
  		@book.update_attributes(patron_id: nil)
@@ -203,6 +204,7 @@ end
 # New
 get '/staff_members/new' do
   @staff_member = StaffMember.new
+  @libraries = Library.all
   erb :staff_members_new
 end
 
@@ -228,13 +230,16 @@ end
  
  get '/staff_members/:id/edit' do
    @staff_member = StaffMember.find_by_id(params['id'])
+   @libraries = Library.all
    erb :staff_members_edit
  end
  
  post '/staff_members/:id' do
    @staff_member = StaffMember.find_by_id(params['id'])
+   @library = Library.find_by_id(params['library_id'])
    if @staff_member.update_attributes(name: params['name'],
-                                email: params['email'])
+                                email: params['email'],
+                                library: @library)
      redirect to("/staff_members/#{@staff_member.id}")
    else
      erb :staff_members_edit

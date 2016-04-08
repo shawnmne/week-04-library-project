@@ -9,6 +9,15 @@
 <form action="/staff_members" method="post">
  Name:<input type="text" name="name"></br>
  Email:<input type="text", name="email"></br>
+
+   <select name="library_id">
+     <option>No Library</option>
+     <% @libraries.each do |library| %>
+       <option value="<%= library.id %>">
+         <%= library.branch_name %>
+       </option>
+     <% end %>
+   </select>
   <input type="submit" value="New Staff Members">
 </form>
 

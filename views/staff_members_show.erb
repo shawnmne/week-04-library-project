@@ -1,6 +1,7 @@
 <% if @staff_member %>
   <h1><%= @staff_member.name %></h1>
  	<p><em>Email:</em> <%= @staff_member.email %></p>
+  <p><em>Library:</em> <%= @staff_member.library ? @staff_member.library : "No Library" %></p>
 
 <% else %>
   <p>No staff member by that name exists</p>
