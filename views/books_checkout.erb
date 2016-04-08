@@ -1,0 +1,16 @@
+<h1>Checkout <%= @book.title  %> </h1>
+<form action="/books/<%= @book.id %>/checkout" method="post">
+	<select name = "patron_id" >
+     <% @patrons.each do |patron| %>
+       <% if patron.id == @book.patron_id %>
+         <% selected = "selected" %>
+       <% else %>
+         <% selected = "" %>
+       <% end %>
+       <option value="<%= patron.id %>" <%= selected %>>
+         <%= patron.name %>
+       </option>
+     <% end %>
+   </select>
+  <input type="submit" value="Checkout Book">
+</form>

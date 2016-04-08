@@ -3,9 +3,16 @@
  	<p><em>Author:</em> <%= @book.author %></p>
   <p><em>ISBN:</em> <%= @book.isbn %></p>
   <p><em>Library:</em> <%= @book.library ? @book.library : "No Library" %></p>
+  <p><em>Status:</em> <%= @book.patron_id.nil? ? "Checked in" : "Checked out by #{@book.patron.name}"  %>
 
 <% else %>
   <p>No book of that title exists</p>
+<% end %>
+
+<% if @book.patron_id == nil %>
+	<p><a href="/books/<%= @book.id %>/checkout">Checkout Book</a></p>
+<% else %>
+	<p><a href="/books/<%= @book.id %>/checkin">Check in Book</a></p>
 <% end %>
 
 <p><a href="/books/<%= @book.id %>/edit">Edit Book</a></p>

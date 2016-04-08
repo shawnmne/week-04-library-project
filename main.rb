@@ -99,6 +99,31 @@ get '/books/:id' do
   erb :books_show
 end
 
+#check out books
+	get '/books/:id/checkout' do 
+ 		@book = Book.find_by_id(params['id']) 
+ 		@patrons = Patron.all
+ 		erb :books_checkout
+ 	end
+
+  post '/books/:id/checkout' do
+  @book = Book.find_by_id(params['id'])
+  @patron = Patron.find_by_id(params['patron_id'])
+  if @book.update_attributes(patron: @patron)                        
+    redirect to("/books/#{@book.id}")s
+  else
+    erb :books_edit
+  end
+end
+
+#check in boooks
+	get '/books/:id/checkin' do 
+ 		@book = Book.find_by_id(params['id']) 
+ 		@book.update_attributes(patron_id: nil)
+ 		erb :books_show
+ 	end
+
+
 
 # Edit
  
