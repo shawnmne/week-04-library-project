@@ -35,12 +35,21 @@ post '/libraries' do
   end
 end
 
+
+
 # Show
 get '/libraries/:id' do
   @library = Library.find_by_id(params['id']) 
   erb :libraries_show
 end
 
+
+#show all books at library
+	get '/libraries/:id/books' do 
+ 		@library = Library.find_by_id(params['id']) 
+ 		@books = Book.all
+ 		erb :libraries_show_books
+ 	end
 
 # Edit 
  get '/libraries/:id/edit' do
@@ -58,6 +67,8 @@ end
      erb :libraries_edit
    end
  	end
+
+
 
 ### books
 get '/books' do 

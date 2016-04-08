@@ -1,0 +1,8 @@
+<h1>All Books at <%= @library.branch_name %></h1>
+<% @books.each do |book| %>
+	<% if @library.id == book.library_id %>
+		<p><em>Title:</em> <%= book.title %></p>
+		<p><em>Author:</em> <%= book.author %></p>
+  	<p><em>ISBN:</em> <%= book.isbn %></p> 
+  <% end %>
+ <% end %>
