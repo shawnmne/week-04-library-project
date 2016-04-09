@@ -1,0 +1,7 @@
+<h1>All Staff Members at <%= @library.branch_name %></h1>
+<% @staff_members.each do |staff_member| %>
+	<% if @library.id == staff_member.library_id %>
+		<p><em>Name:</em> <%= staff_member.name %></p>
+		<p><em>Email:</em> <%= staff_member.email %></p>
+  <% end %>
+ <% end %>

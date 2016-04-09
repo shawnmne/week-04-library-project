@@ -51,6 +51,13 @@ end
  		erb :libraries_show_books
  	end
 
+#show all staff members at library
+  get '/libraries/:id/staff' do 
+    @library = Library.find_by_id(params['id']) 
+    @staff_members = StaffMember.all
+    erb :libraries_show_staff
+  end
+
 # Edit 
  get '/libraries/:id/edit' do
    @library = Library.find_by_id(params['id'])
